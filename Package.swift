@@ -1,26 +1,27 @@
-// swift-tools-version: 6.0
+// swift-tools-version: 5.5
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
-    name: "truefit-ios-package-restapi",
-    platforms: [.iOS(.v13)],
+    name: "TrueFit",
+    platforms: [.iOS(.v13), .macOS(.v12)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "truefit-ios-package-restapi",
-            targets: ["truefit-ios-package-restapi"]),
+            name: "TrueFit",
+            targets: ["TrueFit"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "truefit-ios-package-restapi",
-            path: "Sources/truefit-ios-package-restapi"),
+            name: "TrueFit",
+            path: "Sources/truefit-ios-package-restapi",
+            exclude: ["macOS"]),
         .testTarget(
-            name: "truefit-ios-package-restapiTests",
-            dependencies: ["truefit-ios-package-restapi"],
+            name: "TrueFitTests",
+            dependencies: ["TrueFit"],
             path: "Tests/truefit-ios-package-restapiTests"
         ),
     ]
