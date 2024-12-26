@@ -5,7 +5,12 @@
 //  Created by Aniruddha Bhajan on 24/12/24.
 //
 
-public struct Recommendations: Decodable {
+
+internal struct TFToken: Decodable {
+  let token: String
+}
+
+public struct TFRecommendation: Decodable {
   let recommendations: [String: Recommendation]
 }
 

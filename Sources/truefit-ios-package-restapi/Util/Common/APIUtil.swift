@@ -32,6 +32,10 @@ internal class APIUtil {
     }
   }
   
+  func getBaseURL(_ storeKey: String, _ environment: TFEnvironment) -> String {
+    return environment == TFEnvironment.production ? "https://\(storeKey)-\(TFProdDomain)": TFStagingDomain
+  }
+  
   func fetch<T:Decodable> (urlString: String, method: String? = "GET", headers: [String: String]? = nil) async throws -> T {
     guard let url = URL(string: urlString) else {
       throw APIError.invalidURL
