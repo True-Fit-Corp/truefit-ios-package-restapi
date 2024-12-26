@@ -11,7 +11,7 @@ internal struct TFToken: Decodable {
 }
 
 public struct TFRecommendation: Decodable {
-  let recommendations: [String: Recommendation]
+  var recommendations: [String: Recommendation]
 }
 
 internal struct Recommendation: Decodable {

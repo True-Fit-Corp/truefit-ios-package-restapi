@@ -21,7 +21,9 @@ public class TFiOSPackage {
     self.baseUrlStr = environment == TFEnvironment.production ?"https://\(storeKey)-\(TFProdDomain)": TFStagingDomain
   }
   
-  public func getRecommendation () {}
+  public func getRecommendation () async throws -> TFRecommendation {
+    return try await RecHandler.shared.getRecommendation(storeKey: storeKey, environment: environment, locale: locale!)!
+  }
   
   public func launchWebView () {}
 }

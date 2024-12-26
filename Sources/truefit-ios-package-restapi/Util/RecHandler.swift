@@ -17,12 +17,13 @@ class RecHandler {
     let token = try await TokenHandler.shared.getToken(storeKey: storeKey, environment: environment)
     
     if !token.isEmpty {
-      let recommendation: TFRecommendation = try await APIUtil.shared.fetch(
+      var recommendation: TFRecommendation = try await APIUtil.shared.fetch(
         urlString: apiURL,
         method: "GET",
         headers: [tfUserTokenHeader: token]
       )
-      
+      let url = recommendation.recommendations[storeKey]?.cta?.url
+      recommendation.recommendations[storeKey]?.cta?.url = "\(url ?? "")&appLinkRedirectUrl=true-fit-auth://\(storeKey)"
       return recommendation
     }
     return nil
